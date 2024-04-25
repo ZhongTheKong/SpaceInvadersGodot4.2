@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dy1mb7d3e5ji6"]
+
+[node name="InvaderSpawner" type="Node2D"]
+
+[node name="MovementTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="ShotTimer" type="Timer" parent="."]
+autostart = true

@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dl6c7q1m5wjj3"]
+
+[ext_resource type="PackedScene" uid="uid://kai3jbhbylxd" path="res://Scenes/player.tscn" id="1_sjrb2"]
+[ext_resource type="PackedScene" uid="uid://bfkgnii81w7po" path="res://Scenes/bullet_catcher.tscn" id="2_km3n2"]
+[ext_resource type="PackedScene" uid="uid://dy1mb7d3e5ji6" path="res://Scenes/invader_spawner.tscn" id="3_4fub4"]
+[ext_resource type="Script" path="res://Scenes/invader_spawner.gd" id="4_q8hjj"]
+[ext_resource type="PackedScene" uid="uid://rb6hq55f746t" path="res://Scenes/ufo_spawner.tscn" id="5_s832r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0d0a"]
+size = Vector2(20, 19.3317)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iku7v"]
+size = Vector2(57, 20.2674)
+
+[node name="main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_sjrb2")]
+position = Vector2(0, 302)
+scale = Vector2(4, 4)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BulletCatcher" parent="." instance=ExtResource("2_km3n2")]
+
+[node name="InvaderSpawner" parent="." instance=ExtResource("3_4fub4")]
+position = Vector2(0, -190)
+script = ExtResource("4_q8hjj")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="RightWall" type="Area2D" parent="Walls"]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(566, 0)
+scale = Vector2(1, 33.52)
+shape = SubResource("RectangleShape2D_i0d0a")
+
+[node name="LeftWall" type="Area2D" parent="Walls"]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(-566, 0)
+scale = Vector2(1, 33.52)
+shape = SubResource("RectangleShape2D_i0d0a")
+
+[node name="BottomWall" type="Area2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+position = Vector2(8.08661e-07, 295.5)
+rotation = 1.5708
+scale = Vector2(1, 56.84)
+shape = SubResource("RectangleShape2D_iku7v")
+
+[node name="UFOSpawner" parent="." instance=ExtResource("5_s832r")]
+
+[connection signal="area_entered" from="Walls/RightWall" to="InvaderSpawner" method="_on_right_wall_area_entered"]
+[connection signal="area_entered" from="Walls/LeftWall" to="InvaderSpawner" method="_on_left_wall_area_entered"]

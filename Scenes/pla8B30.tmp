@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://kai3jbhbylxd"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_peksb"]
+[ext_resource type="Texture2D" uid="uid://dt0af4o7yh41a" path="res://Assets/Player/Player.png" id="2_b2xqv"]
+[ext_resource type="Script" path="res://Scenes/shooting.gd" id="3_6o4np"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7de6w"]
+size = Vector2(13, 5)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_peksb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_b2xqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_7de6w")
+
+[node name="ShotOrigin" type="Node2D" parent="."]
+position = Vector2(0, -4)
+script = ExtResource("3_6o4np")

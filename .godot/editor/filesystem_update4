@@ -1,0 +1,9 @@
+res://Scenes/main.tscn
+res://Resources/invader_1.tres
+res://Resources/invader_2.tres
+res://Resources/invader_3.tres
+res://Scenes/player.tscn
+res://Scenes/invader.tscn
+res://Scenes/laser.tscn
+res://Scenes/start_Screen.tscn
+res://Scenes/ufo.tscn
